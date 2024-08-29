@@ -19,7 +19,7 @@ Step 5. Generating a Sequence River Plot
 
 The following files were used in the accompanying methods paper: 
 
-1. AD18_read1.txt.gz (donwload here: )
+1. AD18_read1.txt.gz (donwload here: https://drive.google.com/file/d/1djceocB9oKtbb5zGnbByp0oK-QtWiH2s/view?usp=drive_link)
 2. Oligo_seq_trim.R
 3. Oligo_seq_seq_analysis.R
 4. Oligo_seq_seq_logo.R
