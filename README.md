@@ -10,16 +10,20 @@ The Oligo-seq sequencing analysis pipeline to the accompanying methods paper pub
 ## We subdivided the pipeline into the following steps:
 
 Step 1. Extracting Raw Sequence Reads from the Fastq File(s)
+
 Step 2. Sequence Trimming and Quality Control Filtering
+
 Step 3. Sequence Count and Statistical Analysis
+
 Step 4. Generating a Sequence Logo Plot
+
 Step 5. Generating a Sequence River Plot 
 
 ## Example files to follow along with this pipeline.
 
 The following files were used in the accompanying methods paper: 
 
-1. AD18_read1.txt.gz (donwload here: https://drive.google.com/file/d/1djceocB9oKtbb5zGnbByp0oK-QtWiH2s/view?usp=drive_link)
+1. AD18_read1.txt.gz (download here: https://drive.google.com/file/d/1djceocB9oKtbb5zGnbByp0oK-QtWiH2s/view?usp=drive_link)
 2. Oligo_seq_trim.R
 3. Oligo_seq_seq_analysis.R
 4. Oligo_seq_seq_logo.R
