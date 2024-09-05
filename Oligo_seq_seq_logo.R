@@ -164,7 +164,8 @@ NewSeqLogo <- ggseqlogo(DNAFreq[21:24,], method='custom', seq_type='dna') +
     axis.ticks.length = unit(.25, "cm"),
     axis.line = element_line(size = 0.5, colour = "black", linetype = 1)
   ) +
-  coord_cartesian(ylim = c(-2, 2)) +  # Adjust y-axis limits to accommodate the adjusted data
+  coord_cartesian(ylim = c(-1.25, 1)) +  # Adjust y-axis limits to accommodate the adjusted data
+  coord_cartesian(xlim = c(1, 22)) +
   scale_x_continuous(
     breaks = seq(1, 22, by = 1),
     labels = c("-13", "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0", "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8")
