@@ -1,6 +1,5 @@
-## Oligo-seq script for generating a Sequence Logo Plot.
+## Oligo-seq script for generating a sequence logo plot.
 
-# The following packages are needed to prepare your sequences for analysis
 # Install the following packages, if needed, and load them.
 library(devtools)
 library(Biostrings)
@@ -10,15 +9,15 @@ library(ggplot2)
 library(ggseqlogo)
 library(xlsx)
 
-# Import sequences after trimming and alignment process
+# Read in the list of sequences that were trimmed and exported in the previous script
 CleanSeq2 <- read.table("Final_Seq_List.txt")
 colnames(CleanSeq2) <-c(1)
 
-# Extract sequences representing the total population
+# Separate your data into two data frame groups:
+# 1. Sequences that contain TC and TT
+# 2. Sequences that contain TT only
 TC2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'1', "^GATAGCTAC...T(C|T)GTAGCAGG$"),])
 colnames(TC2) <- c(1)
-
-# Extract only the sequences containing TT aka deaminated sequences
 TT2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'1', "^GATAGCTAC...TTGTAGCAGG$"),])
 colnames(TT2) <- c(1)
 
@@ -38,7 +37,7 @@ TT211 <- DNAStringSet(TT22)
 
 ## Construct a matrix to compile all the data that will be generated through the analysis steps
 DNAFreq<-matrix('',24,width(TT2[1,]))
-colnames(DNAFreq)<-c(1:width(TT2[1,]))
+colnames(DNAFreq)<-c(as.character(-13:8))
 rownames(DNAFreq)<-c("A","C","G","T","","A","C","G","T","","A","C","G","T","","A","C","G","T","","A","C","G","T")
 
 # Rows 1-4 correspond to the count of each base (row) at certain position (column) for the total population
@@ -149,46 +148,40 @@ DNAFreq[21:24,10] <- (as.numeric(DNAFreq[16:19,10])/as.numeric(DNAFreq[11:14,10]
 DNAFreq[21:24,11] <- (as.numeric(DNAFreq[16:19,11])/as.numeric(DNAFreq[11:14,11]))-1
 DNAFreq[21:24,12] <- (as.numeric(DNAFreq[16:19,12])/as.numeric(DNAFreq[11:14,12]))-1
 
-## This code is to make a matrix that removes the non-fixed bases
-# for the purpose of creating a template sequence logo that only shows the 
-# sequence of the oligo used for this oligo-seq analysis
-DNAFreqSeqOnly <- DNAFreq[16:19,]
-DNAFreqSeqOnly[,10] <- c(0,0,0,0)
-DNAFreqSeqOnly[,11] <- c(0,0,0,0)
-DNAFreqSeqOnly[,12] <- c(0,0,0,0)
-
 
 ## This code pertains to the creation of the sequence logo plots used in the figures
 # uses ggseqlogo package developed by Wagih, Omar for more details on specific lines 
 # of code please refer to:
 # https://omarwagih.github.io/ggseqlogo/
-SeqOnlyLogo <- ggseqlogo(DNAFreqSeqOnly, method='custom', seq_type='dna') + ylab('') + theme_logo() + xlab('Position') + annotate('rect',xmin=1,xmax=23,ymin=0,ymax=0,alpha=0.1,col='black',fill='yellow') + theme(
-  axis.ticks = element_line(size = 0.5, color="black") , 
-  axis.ticks.length = unit(.25, "cm"),
-  axis.line = element_line(size = 0.5, colour = "black", linetype=1),
-) + ylim(c(-1.5,2.5))
-SeqOnlyLogo$scales$scales[[1]] <- scale_x_continuous(breaks= seq(1,22,by=1),labels=c("-13","-12","-11","-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","+1","+2","+3","+4","+5","+6","+7","+8"))
-plot(SeqOnlyLogo)
 
-NewSeqLogo <- ggseqlogo(DNAFreq[21:24,], method='custom', seq_type='dna') + ylab('') + theme_logo() + xlab('Position') + annotate('rect',xmin=1,xmax=23,ymin=0,ymax=0,alpha=0.1,col='black',fill='yellow') + theme(
-  axis.ticks = element_line(size = 0.5, color="black") , 
-  axis.ticks.length = unit(.25, "cm"),
-  axis.line = element_line(size = 0.5, colour = "black", linetype=1),
-) + ylim(c(-1.5,2.5)) 
-NewSeqLogo$scales$scales[[1]] <- scale_x_continuous(breaks= seq(1,22,by=1),labels=c("-13","-12","-11","-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","+1","+2","+3","+4","+5","+6","+7","+8"))
+NewSeqLogo <- ggseqlogo(DNAFreq[21:24,], method='custom', seq_type='dna') +
+  ylab('') +
+  theme_logo() +
+  xlab('Position') +
+  annotate('rect', xmin=1, xmax=23, ymin=0, ymax=0, alpha=0.1, col='black', fill='yellow') +
+  theme(
+    axis.ticks = element_line(size = 0.5, color = "black"),
+    axis.ticks.length = unit(.25, "cm"),
+    axis.line = element_line(size = 0.5, colour = "black", linetype = 1)
+  ) +
+  coord_cartesian(ylim = c(-2, 2)) +  # Adjust y-axis limits to accommodate the adjusted data
+  scale_x_continuous(
+    breaks = seq(1, 22, by = 1),
+    labels = c("-13", "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0", "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8")
+  ) +
+  scale_y_continuous(
+    breaks = seq(-2, 2, by = 1),
+    labels = function(y) as.character(y + 1)  # Adjust y-axis labels to reflect the original values
+  )
 plot(NewSeqLogo)
 
-# Exports the sequence logo plots into PDF files ready for publication
-pdf(file="Oligo-seq Sequence Logo Plot-Target Sequence Only.pdf",width=9,height=5.25)
-plot(SeqOnlyLogo)
+
+pdf(file="Oligo-seq Sequence Logo Plot.pdf",width=9,height=5.25)
+print(NewSeqLogo)
 dev.off()
 
-pdf(file="Oligo-seq Sequence Logo Plot-Deaminated Sequence Enrichment and Depletion.pdf",width=9,height=5.25)
-plot(NewSeqLogo)
-dev.off()
-
-## Exports the DNAFreq table into a spreadsheet
+## Exports the DNAFreq table into an excel spreadsheet
 # This is for record-keeping and to double check all raw numbers output during
 # the analysis
-write.csv(DNAFreq, "DNAFreq.csv")
+write.xlsx2(DNAFreq, file = "DNA Base Frequencies.xlsx", row.names = TRUE, sheetName = "Sequence Logo Data")
 
