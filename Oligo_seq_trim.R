@@ -12,11 +12,9 @@ library(readr)
 # Read in the previously prepared text file containing only the raw reads from the sequencing read file.
 RawReads <- read.table("AD18_rawseqs.txt")
 
-# Trim the adaptor sequence from every sequence, allowing for alignment of every sequence.
+# Trim each sequence to remove the adaptor sequence and any bases after.
 TrimSeq <- data.frame(word(RawReads$V1,1,sep="AGATCGGAAGAGCACACGTCT"))
 colnames(TrimSeq) <- c(1)
-
-TrimSeq <- data.frame(TrimSeq)
 
 # Define the sequence of the target oligonucleotide used in the Oligo-seq experiment.
 # A '.' symbol denotes any random letter
@@ -25,6 +23,7 @@ TrimSeq <- data.frame(TrimSeq)
 # By using the $ symbol, you avoid extracting sequences with additional nucleotides that are a result of sequencing errors.
 myoligo <- "GATAGCTAC...T(C|T)GTAGCAGG$"
 
+# Extract all sequences that contain the correct full sequence of the target oligonucleotide.
 CleanSeq <- data.frame(TrimSeq[str_detect(TrimSeq$'1', myoligo),])
 colnames(CleanSeq) <- c(1)
 
