@@ -46,7 +46,9 @@ Note: Only read 1 is necessary to perform all steps described below.
     > gunzip Oligoseq_read1.txt.gz
 
 Note: In the code shown above, a MacOS terminal command line system was used.
+
 Note: Depending on the number of reads, the resulting .txt file may take up a large amount of memory space on your operating system.
+
 Note: Depending on the size of the sequencing file, the unzipping process may take a long time to complete.
 
 3.	Extract the raw sequences from the fastq file using the operating system’s terminal command prompt by running the following code:
@@ -54,6 +56,7 @@ Note: Depending on the size of the sequencing file, the unzipping process may ta
     > awk ' NR % 4 == 2' Oligoseq_read1.txt > Oligoseq_sequences.txt
     
 Note: This command extracts the sequence reads from the fastq file and creates a new file called “Oligoseq_sequences.txt” output into the directory file. High-throughput sequencing files are formatted such that starting from the 2nd line, every 4th line of the file corresponds to a full sequence read. 
+
 Note: Depending on the number of reads, the resulting .txt file may take up a few minutes to be generated.
 
 ## Section 2. Sequence Trimming and Quality Control Filtering
@@ -67,23 +70,32 @@ Note: This file contains all of the sequence reads trimmed by removing the adapt
 
 ## Section 3. Sequence Enrichment and Depletion Analysis
 
-7.	To generate a sequence enrichment/depletion bar graph (Figure 7B)
-   a.	Open the “Oligoseq_analysis.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file.
-   b.	Run “Oligoseq_analysis.R,” and a new Excel file called “Oligoseq Enrichment Analysis.xlsx” will be output into the directory file.
+7.	To generate a sequence enrichment/depletion bar graph (Figure 7B),
+
+a.	Open the “Oligoseq_analysis.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file.
+
+b.	Run “Oligoseq_analysis.R,” and a new Excel file called “Oligoseq Enrichment Analysis.xlsx” will be output into the directory file.
+
 Note: This file contains 3 separate tables. Table 1 displays the enrichment and depletion values for each possible sequence combination in the target oligonucleotide. Table 2 contains the occurrence and frequency values of the possible sequence combinations in sequences that have TC and TT motifs. Table 3 contains the occurrence and frequency values of the possible sequence combinations in sequences that have TT motifs only.
-   c.	The values obtained in Table 1 from this analysis can be visualized by creating a bar plot graph on software such as Excel or GraphPad Prism.
+
+c.	The values obtained in Table 1 from this analysis can be visualized by creating a bar plot graph on software such as Excel or GraphPad Prism.
 
 ## Section 4. Generating a Sequence Logo Plot
 
-57.	To generate a sequence logo plot (Figure 7C),
+8.	To generate a sequence logo plot (Figure 7C),
+
 a.	Open the “Oligoseq_logoplot.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file. 
+
 b.	Run “Oligoseq_logoplot.R”  and a new Excel file called “Oligoseq Logo Plot.xlsx” and a pdf file named “Oligoseq Logo Plot.pdf” which contains a publication-ready logo plot will be output into the directory file. 
+
 Note: The “Oligoseq Logo Plot.xlsx” file contains the values used to generate the logo plot graph. 
 
 ## Section 5. Generation a River Plot
 
-58.	To generate a river plot (Figure 7D),
+9.	To generate a river plot (Figure 7D),
+
 a.	Open the “Oligoseq_riverplot.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file.
+
 b.	Run “Oligoseq_riverplot.R” and a pdf file called “Oligoseq River Plot.pdf” which contains a publication-ready river plot will be output into the directory file. 
 
 ## Acknowledgements 
