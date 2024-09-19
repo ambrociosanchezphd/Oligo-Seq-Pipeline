@@ -68,10 +68,10 @@ Note: This file contains all of the sequence reads trimmed by removing the adapt
 ## Section 3. Sequence Enrichment and Depletion Analysis
 
 7.	To generate a sequence enrichment/depletion bar graph (Figure 7B)
-a.	Open the “Oligoseq_analysis.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file.
-b.	Run “Oligoseq_analysis.R,” and a new Excel file called “Oligoseq Enrichment Analysis.xlsx” will be output into the directory file. 
+   a.	Open the “Oligoseq_analysis.R” script in RStudio and set your working directory to the folder containing the “Trimmed_Sequences.txt” file.
+   b.	Run “Oligoseq_analysis.R,” and a new Excel file called “Oligoseq Enrichment Analysis.xlsx” will be output into the directory file.
 Note: This file contains 3 separate tables. Table 1 displays the enrichment and depletion values for each possible sequence combination in the target oligonucleotide. Table 2 contains the occurrence and frequency values of the possible sequence combinations in sequences that have TC and TT motifs. Table 3 contains the occurrence and frequency values of the possible sequence combinations in sequences that have TT motifs only.
-c.	The values obtained in Table 1 from this analysis can be visualized by creating a bar plot graph on software such as Excel or GraphPad Prism.
+   c.	The values obtained in Table 1 from this analysis can be visualized by creating a bar plot graph on software such as Excel or GraphPad Prism.
 
 ## Section 4. Generating a Sequence Logo Plot
 
