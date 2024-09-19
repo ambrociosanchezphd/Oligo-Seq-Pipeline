@@ -90,7 +90,7 @@ b.	Run “Oligoseq_logoplot.R”  and a new Excel file called “Oligoseq Logo P
 
 Note: The “Oligoseq Logo Plot.xlsx” file contains the values used to generate the logo plot graph. 
 
-## Section 5. Generation a River Plot
+## Section 5. Generating a River Plot
 
 9.	To generate a river plot (Figure 7D),
 
