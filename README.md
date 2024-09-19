@@ -1,5 +1,5 @@
 # Oligo-Seq-Pipeline
-The Oligo-seq sequencing analysis pipeline to the accompanying methods paper published by Dr. Pedro Ortega, Ambrocio Sanchez, and Dr. Remi Buisson from the Buisson laboratory.
+The Oligo-seq sequencing data analysis pipeline that was used in Sanchez et. al., Nat Commun 15, 2370 (2024). https://doi.org/10.1038/s41467-024-45909-5 and the accompanying methods paper published by the Buisson laboratory.
 
 ## Required software
 
