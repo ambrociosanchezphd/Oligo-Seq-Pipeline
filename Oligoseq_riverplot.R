@@ -1,8 +1,6 @@
 ## Oligo-seq script for generating a River Plot.
 
 # The following packages are needed to prepare your sequences for analysis
-# Install the following packages and libraries using the <install.packages('PACKAGE NAME')> command
-# Load them package using the <library(PACKAGE NAME)> command
 library(devtools)
 library(Biostrings)
 library(stringr)
@@ -13,7 +11,7 @@ library(mlr3verse)
 library(mlr3misc)
 
 # Read in the list of sequences that were trimmed and exported in the previous script 
-B5L <- read.table("Trimmed_Sequences.txt")
+B5L <- read.table("Trimmed_Sequences.fq")
 
 # Separate your data into two data frame groups:
 # 1. Sequences that contain TC and TT
