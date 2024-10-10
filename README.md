@@ -29,6 +29,8 @@ The following files were used in the accompanying methods paper:
 4. Oligoseq_logoplot.R
 5. Oligoseq_riverplot.R
 
+Note: The R packages used were installed as current versions from CRAN using install.packages() as of August 2024.
+
 ## Section 1. Extracting Raw Sequence Reads from the FastQ File(s)
 
 The following steps describe the process of analyzing Oligo-seq sequencing data. These steps require the use of a terminal command line system and specific RStudio scripts that were created for this assay and provided below. Additionally, to illustrate the analysis of the sequencing data, we have provided the sequencing file “Oligoseq_read1.txt.gz,” obtained after sequencing the oligonucleotide target used in this protocol as well as the RStudio scripts used to analyze the sequencing data. The sequencing file and the RStudio scripts can be downloaded at:
