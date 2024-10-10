@@ -1,7 +1,6 @@
 ## Oligo-seq script for performing sequence combination enrichment/depletion analysis.
 
 # The following packages are needed to prepare your sequences for analysis
-
 library(devtools)
 library(Biostrings)
 library(stringr)
@@ -13,15 +12,15 @@ library(xlsx)
 library(tidyr)
 
 # Read in the list of sequences that were trimmed and exported using the Oligoseq_trim script. 
-B5L <- read.table("Trimmed_Sequences.txt")
+B5L <- read.table("Trimmed_Sequences.fq")
 
 # Separate your data into two data frame groups:
 # 1. Sequences that contain TC and TT
 # 2. Sequences that contain TT only
 B5L1 <- data.frame(B5L[str_detect(B5L$V1, "^GATAGCTAC...T(C|T)GTAGCAGG$"),])
-colnames(B5L1) <- c(1)
+colnames(B5L1) <- c('Total Sequences')
 B5L2 <- data.frame(B5L[str_detect(B5L$V1, "^GATAGCTAC...TTGTAGCAGG$"),])
-colnames(B5L2) <- c(1)
+colnames(B5L2) <- c('Deaminated Sequences')
 
 # Convert the sequences in the data frames into character class types.
 B5L11 <- as.character(B5L1[,1])
