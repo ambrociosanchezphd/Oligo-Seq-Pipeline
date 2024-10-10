@@ -1,8 +1,7 @@
 ## Oligo-seq script for performing sequence combination enrichment/depletion analysis.
 
 # The following packages are needed to prepare your sequences for analysis
-# Install the following packages and libraries using the <install.packages('PACKAGE NAME')> command
-# Load them package using the <library(PACKAGE NAME)> command
+
 library(devtools)
 library(Biostrings)
 library(stringr)
