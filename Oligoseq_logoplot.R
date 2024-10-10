@@ -1,8 +1,6 @@
 ## Oligo-seq script for generating a sequence logo plot.
 
 # The following packages are needed to prepare your sequences for analysis
-# Install the following packages and libraries using the <install.packages('PACKAGE NAME')> command
-# Load them package using the <library(PACKAGE NAME)> command
 library(devtools)
 library(Biostrings)
 library(stringr)
@@ -12,16 +10,16 @@ library(ggseqlogo)
 library(xlsx)
 
 # Read in the list of sequences that were trimmed and exported in the previous script
-CleanSeq2 <- read.table("Trimmed_Sequences.txt")
-colnames(CleanSeq2) <-c(1)
+CleanSeq2 <- read.table("Trimmed_Sequences.fq")
+colnames(CleanSeq2) <-c('Sequences')
 
 # Separate your data into two data frame groups:
 # 1. Sequences that contain TC and TT
 # 2. Sequences that contain TT only
-TC2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'1', "^GATAGCTAC...T(C|T)GTAGCAGG$"),])
-colnames(TC2) <- c(1)
-TT2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'1', "^GATAGCTAC...TTGTAGCAGG$"),])
-colnames(TT2) <- c(1)
+TC2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'Sequences', "^GATAGCTAC...T(C|T)GTAGCAGG$"),])
+colnames(TC2) <- c('Total Sequences')
+TT2 <- data.frame(CleanSeq2[str_detect(CleanSeq2$'Sequences', "^GATAGCTAC...TTGTAGCAGG$"),])
+colnames(TT2) <- c('Deaminated Sequences')
 
 # Obtain the total number of sequences extracted in each function above 
 # e.g. total and deaminated
