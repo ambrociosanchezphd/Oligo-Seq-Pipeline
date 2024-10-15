@@ -23,7 +23,7 @@ Section 5. Generating a Sequence River Plot
 
 The following files were used in the accompanying methods paper: 
 
-1. Oligoseq_read1.fq.gz (download here: https://drive.google.com/file/d/1djceocB9oKtbb5zGnbByp0oK-QtWiH2s/view?usp=drive_link)
+1. Oligoseq_read1.fq.gz (download here: https://drive.google.com/file/d/1JSvjGlypJxiIlRUlXoKxLvS79P-i098f/view?usp=drive_link)
 2. Oligoseq_trim.R
 3. Oligoseq_analysis.R
 4. Oligoseq_logoplot.R
